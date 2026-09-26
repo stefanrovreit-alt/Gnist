@@ -1,0 +1,267 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-2);
+  letter-spacing: 0.04em;
+}
+
+.h1 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 56px;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.lede {
+  font-size: 18px;
+  color: var(--ink-2);
+  max-width: 560px;
+  text-wrap: pretty;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+.session {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sessionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 28px;
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--divider);
+}
+
+.row:hover {
+  background: rgba(217, 130, 43, 0.06);
+}
+
+.num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.rowText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rowTitle {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.rowSub {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.start {
+  align-self: flex-start;
+}
+
+.resume {
+  background: var(--dark);
+  color: var(--on-dark);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.halo {
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 170, 80, 0.28), rgba(255, 170, 80, 0) 70%);
+  pointer-events: none;
+}
+
+.resumeEyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--line);
+}
+
+.resumeTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.resumeTitle {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  line-height: 1.05;
+}
+
+.resumeSub {
+  font-size: 15px;
+  color: var(--line);
+  text-wrap: pretty;
+}
+
+.resumeProgress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.resumeStats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--line);
+}
+
+.track {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(233, 220, 196, 0.14);
+}
+
+.fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--glow);
+  box-shadow: 0 0 12px rgba(255, 170, 80, 0.6);
+}
+
+.ghost {
+  align-self: flex-start;
+  border: 1px solid rgba(233, 220, 196, 0.35);
+  color: var(--on-dark-strong);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  position: relative;
+}
+
+.ghost:hover {
+  background: rgba(233, 220, 196, 0.08);
+}
+
+.pushDown {
+  margin-top: auto;
+}
+
+.recs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.h2Small {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 26px;
+}
+
+.recGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.rec {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.15s;
+}
+
+.rec:hover {
+  border-color: var(--accent);
+}
+
+.recChords {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-2);
+  white-space: pre;
+}
+
+.recText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.recTitle {
+  font-family: var(--font-serif);
+  font-size: 22px;
+}
+
+.recSub {
+  font-size: 14px;
+  color: var(--ink-2);
+}

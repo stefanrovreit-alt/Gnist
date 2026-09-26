@@ -1,0 +1,245 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.back {
+  align-self: flex-start;
+  font-size: 14px;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.back:hover {
+  color: var(--ink);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 48px;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.meta {
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  min-width: 44px;
+  text-align: center;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-2);
+  border: 1px solid var(--card-border);
+}
+
+.chip[data-loop] {
+  background: rgba(217, 130, 43, 0.14);
+  border-color: var(--heat-2);
+}
+
+.chip[data-current] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-dark-strong);
+}
+
+.chordLine {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.chordNow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.chordName {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  line-height: 1;
+}
+
+.next {
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.beats {
+  display: flex;
+  gap: 6px;
+}
+
+.beat {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--divider);
+  color: var(--ink-2);
+  transition: background 0.1s;
+}
+
+.beat[data-on] {
+  background: var(--ink);
+  color: var(--amber-text);
+}
+
+.hint {
+  font-size: 15px;
+  color: var(--ink-2);
+  max-width: 340px;
+  text-wrap: pretty;
+}
+
+.transport {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+}
+
+.round {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--input-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.round:hover {
+  border-color: var(--ink-2);
+}
+
+.play {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 6px 18px -6px rgba(217, 130, 43, 0.8);
+  transition: background 0.15s;
+}
+
+.play:hover {
+  background: var(--accent-hover);
+}
+
+.pauseBar {
+  width: 6px;
+  height: 22px;
+  background: var(--dark);
+  border-radius: 1px;
+}
+
+.playTriangle {
+  width: 0;
+  height: 0;
+  border-left: 18px solid var(--dark);
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  margin-left: 4px;
+}
+
+.tempo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 220px;
+  flex: 1;
+  max-width: 340px;
+}
+
+.tempo input {
+  width: 100%;
+}
+
+.tempoHead {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.tempoLabel {
+  font-weight: 600;
+}
+
+.bpm {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.toggle {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  border: 1px solid var(--input-border);
+}
+
+.toggle[aria-pressed='true'] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--amber-text);
+}
+
+.loopHint {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.lower {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 20px;
+  align-items: start;
+}
+
+.toggle[data-muted] {
+  color: var(--ink-2);
+}

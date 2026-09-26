@@ -1,0 +1,171 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.stat {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statValue {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.charts {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 18px;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.heat {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 16px);
+  grid-auto-columns: 16px;
+  gap: 5px;
+}
+
+.cell {
+  border-radius: 4px;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.legendCell {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 150px;
+}
+
+.barCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.barValue {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-2);
+}
+
+.bar {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.barDay {
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.learning {
+  gap: 6px;
+}
+
+.learningTitle {
+  margin-bottom: 10px;
+}
+
+.none {
+  font-size: 15px;
+  color: var(--ink-2);
+  padding: 12px 0;
+  border-top: 1px solid var(--divider);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr) 56px;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 0;
+  border-top: 1px solid var(--divider);
+}
+
+.rowText {
+  display: flex;
+  flex-direction: column;
+}
+
+.rowTitle {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.rowSub {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.track {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--divider);
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--accent);
+}
+
+.pct {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-align: right;
+}
