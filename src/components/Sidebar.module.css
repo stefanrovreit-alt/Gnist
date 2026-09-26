@@ -1,0 +1,130 @@
+.sidebar {
+  background: var(--dark);
+  color: var(--on-dark);
+  padding: 28px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+}
+
+.spark {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--glow);
+  box-shadow: 0 0 14px 4px rgba(255, 160, 60, 0.55);
+}
+
+.wordmark {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--on-dark-muted);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.navItem:hover {
+  color: var(--on-dark-strong);
+}
+
+.navBar {
+  width: 3px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+.navItem[aria-current='page'] {
+  background: rgba(233, 220, 196, 0.09);
+  color: var(--on-dark-strong);
+}
+
+.navItem[aria-current='page'] .navBar {
+  background: var(--accent-hover);
+}
+
+.streak {
+  margin-top: auto;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(233, 220, 196, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.streakHead {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.streakNum {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  line-height: 1;
+}
+
+.streakLabel {
+  font-size: 14px;
+  color: var(--line);
+}
+
+.week {
+  display: flex;
+  justify-content: space-between;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(233, 220, 196, 0.25);
+}
+
+.dot[data-practiced] {
+  background: var(--glow);
+  border: none;
+  box-shadow: 0 0 8px rgba(255, 160, 60, 0.5);
+}
+
+.dot[data-today] {
+  border: 2px solid var(--on-dark-strong);
+}
+
+.dayLetter {
+  font-size: 11px;
+  color: var(--on-dark-faint);
+}

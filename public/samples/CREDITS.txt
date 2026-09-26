@@ -1,0 +1,5 @@
+Guitar samples (public/samples/nylon/*.mp3)
+Instrument: Acoustic Guitar (nylon), FluidR3 GM soundfont by Frank Wen,
+rendered to MP3 by the midi-js-soundfonts project (https://github.com/gleitz/midi-js-soundfonts).
+License: Creative Commons Attribution 3.0 (https://creativecommons.org/licenses/by/3.0/).
+Files were renamed to their MIDI note numbers; audio is unmodified.

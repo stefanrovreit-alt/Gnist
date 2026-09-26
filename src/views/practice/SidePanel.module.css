@@ -1,0 +1,139 @@
+.video {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.screen {
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  background: repeating-linear-gradient(135deg, #3a2a1f 0 12px, #33251b 12px 24px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--line);
+}
+
+.playIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(233, 220, 196, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 14px solid var(--on-dark);
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  margin-left: 4px;
+}
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.segmented {
+  display: flex;
+  background: var(--divider);
+  border-radius: 999px;
+  padding: 3px;
+}
+
+.segment {
+  flex: 1;
+  text-align: center;
+  padding: 7px 0;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.segment[aria-pressed='true'] {
+  background: var(--card);
+  color: var(--ink);
+}
+
+.note {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.mastery {
+  margin-top: 10px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mastery input {
+  width: 100%;
+}
+
+.masteryHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.masteryTitle {
+  font-family: var(--font-serif);
+  font-size: 20px;
+}
+
+.masteryPct {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.markBtn {
+  align-self: flex-start;
+  border: 1px solid var(--ink);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 999px;
+}
+
+.markBtn:hover {
+  background: var(--ink);
+  color: var(--on-dark-strong);
+}
+
+.mastered {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.masteredPill {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #dfe3cf;
+  color: #4a5530;
+}
+
+.link {
+  font-size: 13px;
+  color: var(--ink-2);
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: var(--ink);
+}
