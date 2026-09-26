@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box}body{margin:0;background:#efe6d4;color:#2b2019;font-family:'Hanken Grotesk',sans-serif;-webkit-font-smoothing:antialiased}a{color:#a65a14}a:hover{color:#2b2019}input[type=range]{accent-color:#d9822b}input::placeholder{color:#8a7864}</style>
+</helmet>
+<div style="display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh">
+<aside style="background:#241a13;color:#e9dcc4;padding:28px 16px;display:flex;flex-direction:column;gap:32px;position:sticky;top:0;height:100vh">
+  <div style="display:flex;align-items:center;gap:12px;padding:0 12px">
+    <div style="width:10px;height:10px;border-radius:50%;background:#ffb35c;box-shadow:0 0 14px 4px rgba(255,160,60,.55)"></div>
+    <div style="font-family:Newsreader,serif;font-size:30px;font-style:italic;letter-spacing:-.01em">Gnist</div>
+  </div>
+  <nav style="display:flex;flex-direction:column;gap:2px">
+    <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+      <button onClick="{{ n.onClick }}" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;background:{{ n.bg }};color:{{ n.color }};font-size:15px;font-weight:500"><span style="width:3px;height:16px;border-radius:2px;background:{{ n.bar }}"></span>{{ n.label }}</button>
+    </sc-for>
+  </nav>
+  <div style="margin-top:auto;padding:16px;border-radius:12px;background:rgba(233,220,196,.06);display:flex;flex-direction:column;gap:12px">
+    <div style="display:flex;align-items:baseline;gap:8px"><span style="font-family:Newsreader,serif;font-size:34px;line-height:1">4</span><span style="font-size:14px;color:#c9b89c">dager på rad</span></div>
+    <div style="display:flex;justify-content:space-between">
+      <sc-for list="{{ weekDots }}" as="w" hint-placeholder-count="7">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:14px;height:14px;border-radius:50%;background:{{ w.bg }};border:{{ w.border }};box-shadow:{{ w.shadow }}"></div><span style="font-size:11px;color:#a8977d">{{ w.d }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+</aside>
+
+<main style="padding:40px 48px 72px;max-width:1240px;width:100%">
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:36px">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#6b5a4a;letter-spacing:.04em">LØRDAG 26. SEPTEMBER</div>
+    <h1 style="margin:0;font-family:Newsreader,serif;font-weight:400;font-size:56px;letter-spacing:-.02em;line-height:1.05">God kveld.</h1>
+    <p style="margin:0;font-size:18px;color:#6b5a4a;max-width:560px;text-wrap:pretty">Atten rolige minutter i kveld. Du er snart gjennom introen til Dust in the Wind.</p>
+  </header>
+  <div style="display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px">
+    <section style="background:#f7f0e2;border:1px solid #dccfb6;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline"><h2 style="margin:0;font-family:Newsreader,serif;font-weight:400;font-size:28px">Kveldens økt</h2><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#6b5a4a">18 MIN</span></div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ session }}" as="x" hint-placeholder-count="3">
+          <button onClick="{{ x.open }}" style="all:unset;cursor:pointer;display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:16px;padding:14px 0;border-top:1px solid #e3d7c0" style-hover="background:rgba(217,130,43,.06)">
+            <span style="width:32px;height:32px;border-radius:50%;border:1px solid #c9b89c;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px">{{ x.n }}</span>
+            <span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:17px;font-weight:600">{{ x.t }}</span><span style="font-size:14px;color:#6b5a4a">{{ x.sub }}</span></span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#6b5a4a">{{ x.min }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <button onClick="{{ startSession }}" style="all:unset;cursor:pointer;align-self:flex-start;background:#d9822b;color:#241a13;font-weight:600;font-size:16px;padding:14px 24px;border-radius:999px" style-hover="background:#e8963f">Start økten</button>
+    </section>
+    <section style="background:#241a13;color:#e9dcc4;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden">
+      <div style="position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,170,80,.28),rgba(255,170,80,0) 70%)"></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;color:#c9b89c">FORTSETT DER DU SLAPP</div>
+      <div style="display:flex;flex-direction:column;gap:4px"><div style="font-family:Newsreader,serif;font-size:36px;line-height:1.05">Dust in the Wind</div><div style="font-size:15px;color:#c9b89c">Kansas · Travis-picking</div></div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:auto">
+        <div style="display:flex;justify-content:space-between;font-size:14px;color:#c9b89c"><span>Takt 3 av 8</span><span>70 % tempo</span></div>
+        <div style="height:6px;border-radius:3px;background:rgba(233,220,196,.14)"><div style="width:38%;height:100%;border-radius:3px;background:#ffb35c;box-shadow:0 0 12px rgba(255,170,80,.6)"></div></div>
+      </div>
+      <button onClick="{{ resume }}" style="all:unset;cursor:pointer;align-self:flex-start;border:1px solid rgba(233,220,196,.35);color:#f3e6cc;font-weight:600;font-size:15px;padding:12px 22px;border-radius:999px" style-hover="background:rgba(233,220,196,.08)">Fortsett</button>
+    </section>
+  </div>
+  <section style="display:flex;flex-direction:column;gap:16px">
+    <h2 style="margin:0;font-family:Newsreader,serif;font-weight:400;font-size:26px">Passer der du er nå</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px">
+      <sc-for list="{{ recs }}" as="c" hint-placeholder-count="3">
+        <button onClick="{{ c.open }}" style="all:unset;cursor:pointer;background:#f7f0e2;border:1px solid #dccfb6;border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:10px" style-hover="border-color:#d9822b">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6b5a4a">{{ c.chords }}</span>
+          <span style="display:flex;flex-direction:column;gap:2px"><span style="font-family:Newsreader,serif;font-size:22px">{{ c.t }}</span><span style="font-size:14px;color:#6b5a4a">{{ c.a }} · {{ c.level }}</span></span>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isLib }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:28px">
+  <header style="display:flex;flex-direction:column;gap:20px">
+    <h1 style="margin:0;font-family:Newsreader,serif;font-weight:400;font-size:52px;letter-spacing:-.02em">Bibliotek</h1>
+    <input value="{{ q }}" onChange="{{ onQ }}" placeholder="Søk etter låt, artist eller sjanger" style="width:100%;max-width:560px;font:inherit;font-size:17px;padding:14px 18px;border-radius:12px;border:1px solid #cdbf a4;border:1px solid #cdbfa4;background:#f7f0e2;color:#2b2019;outline:none">
+    <div style="display:flex;flex-wrap:wrap;gap:24px">
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ genreChips }}" as="g" hint-placeholder-count="6">
+          <button onClick="{{ g.onClick }}" style="all:unset;cursor:pointer;padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500;background:{{ g.bg }};color:{{ g.color }};border:1px solid {{ g.border }}">{{ g.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ lvlChips }}" as="g" hint-placeholder-count="4">
+          <button onClick="{{ g.onClick }}" style="all:unset;cursor:pointer;padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500;background:{{ g.bg }};color:{{ g.color }};border:1px solid {{ g.border }}">{{ g.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+  </header>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px">
+    <sc-for list="{{ libSongs }}" as="c" hint-placeholder-count="8">
+      <button onClick="{{ c.open }}" style="all:unset;cursor:pointer;background:#f7f0e2;border:1px solid #dccfb6;border-radius:14px;overflow:hidden;display:flex;flex-direction:column" style-hover="border-color:#d9822b;box-shadow:0 10px 24px -14px rgba(36,26,19,.45)">
+        <span style="height:108px;background:{{ c.tone }};padding:16px;display:flex;flex-direction:column;justify-content:space-between;color:#f3e6cc">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;opacity:.9">{{ c.pattern }}</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:14px">{{ c.chords }}</span>
+        </span>
+        <span style="padding:16px;display:flex;flex-direction:column;gap:10px">
+          <span style="display:flex;flex-direction:column;gap:2px"><span style="font-family:Newsreader,serif;font-size:22px;line-height:1.15">{{ c.t }}</span><span style="font-size:14px;color:#6b5a4a">{{ c.a }}</span></span>
+          <span style="display:flex;align-items:center;gap:8px;font-size:13px;color:#6b5a4a"><span style="display:flex;gap:3px"><span style="width:14px;height:5px;border-radius:2px;background:{{ c.l1 }}"></span><span style="width:14px;height:5px;border-radius:2px;background:{{ c.l2 }}"></span><span style="width:14px;height:5px;border-radius:2px;background:{{ c.l3 }}"></span></span>{{ c.level }}<span style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px">{{ c.bpm }} BPM</span></span>
+        </span>
+      </button>
+    </sc-for>
+  </div>
+  <sc-if value="{{ noHits }}" hint-placeholder-val="{{ false }}">
+    <div style="background:#f7f0e2;border:1px dashed #c9b89c;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:14px;align-items:flex-start;max-width:560px">
+      <div style="font-family:Newsreader,serif;font-size:26px">Ingen treff på «{{ q }}» ennå.</div>
+      <p style="margin:0;font-size:16px;color:#6b5a4a;text-wrap:pretty">{{ wishText }}</p>
+      <button onClick="{{ wish }}" style="all:unset;cursor:pointer;background:#d9822b;color:#241a13;font-weight:600;padding:12px 20px;border-radius:999px">Ønsk deg låten</button>
+    </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isTech }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:28px">
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <h1 style="margin:0;font-family:Newsreader,serif;font-weight:400;font-size:52px;letter-spacing:-.02em">Teknikk</h1>
+    <p style="margin:0;font-size:18px;color:#6b5a4a;max-width:600px;text-wrap:pretty">Fingerspill bygges nedenfra: tommelen først, så én finger av gangen. Hver øvelse tar under fem minutter.</p>
+  </header>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px">
+    <sc-for list="{{ exercises }}" as="x" hint-placeholder-count="5">
+      <div style="background:#f7f0e2;border:1px solid #dccfb6;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#6b5a4a">{{ x.num }}</span><span style="font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;background:{{ x.stBg }};color:{{ x.stColor }}">{{ x.status }}</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px"><div style="font-family:Newsreader,serif;font-size:26px;line-height:1.1">{{ x.t }}</div><div style="font-size:15px;color:#6b5a4a;text-wrap:pretty">{{ x.desc }}</div></div>
+        <div style="display:flex;gap:6px">
+          <sc-for list="{{ x.fingers }}" as="f" hint-placeholder-count="4">
+            <span style="width:30px;height:30px;border-radius:50%;background:#241a13;color:#ffc27a;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px">{{ f }}</span>
+          </sc-for>
+        </div>
+        <button onClick="{{ x.open }}" style="all:unset;cursor:pointer;align-self:flex-start;border:1px solid #2b2019;font-weight:600;font-size:15px;padding:10px 20px;border-radius:999px;margin-top:4px" style-hover="background:#2b2019;color:#f3e6cc">Øv nå</button>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isProg }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:28px">
+  <h1 style="margin:0;font-family:Newsreader,serif;font-weight:400;font-size:52px;letter-spacing:-.02em">Fremdrift</h1>
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px">
+    <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+      <div style="background:#f7f0e2;border:1px solid #dccfb6;border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:4px"><span style="font-family:Newsreader,serif;font-size:44px;line-height:1">{{ s.v }}</span><span style="font-size:15px;color:#6b5a4a">{{ s.l }}</span></div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:18px">
+    <section style="background:#f7f0e2;border:1px solid #dccfb6;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:18px">
+      <h2 style="margin:0;font-family:Newsreader,serif;font-weight:400;font-size:24px">Siste tolv uker</h2>
+      <div style="display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,16px);grid-auto-columns:16px;gap:5px">
+        <sc-for list="{{ heat }}" as="h" hint-placeholder-count="84"><div style="border-radius:4px;background:{{ h.bg }}"></div></sc-for>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:#6b5a4a">Mindre<span style="width:12px;height:12px;border-radius:3px;background:#e3d7c0"></span><span style="width:12px;height:12px;border-radius:3px;background:#efc896"></span><span style="width:12px;height:12px;border-radius:3px;background:#e3a35c"></span><span style="width:12px;height:12px;border-radius:3px;background:#b8661c"></span>Mer</div>
+    </section>
+    <section style="background:#f7f0e2;border:1px solid #dccfb6;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:18px">
+      <h2 style="margin:0;font-family:Newsreader,serif;font-weight:400;font-size:24px">Denne uka</h2>
+      <div style="display:flex;align-items:flex-end;gap:12px;height:150px">
+        <sc-for list="{{ week }}" as="d" hint-placeholder-count="7">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#6b5a4a">{{ d.m }}</span><div style="width:100%;height:{{ d.h }};border-radius:5px;background:{{ d.bg }}"></div><span style="font-size:12px;color:#6b5a4a">{{ d.d }}</span></div>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+  <section style="background:#f7f0e2;border:1px solid #dccfb6;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:6px">
+    <h2 style="margin:0 0 10px;font-family:Newsreader,serif;font-weight:400;font-size:24px">Låter du lærer</h2>
+    <sc-for list="{{ mastery }}" as="m" hint-placeholder-count="3">
+      <button onClick="{{ m.open }}" style="all:unset;cursor:pointer;display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr) 56px;align-items:center;gap:18px;padding:12px 0;border-top:1px solid #e3d7c0">
+        <span style="display:flex;flex-direction:column"><span style="font-weight:600;font-size:16px">{{ m.t }}</span><span style="font-size:13px;color:#6b5a4a">{{ m.a }}</span></span>
+        <span style="height:8px;border-radius:4px;background:#e3d7c0"><span style="display:block;width:{{ m.w }};height:100%;border-radius:4px;background:#d9822b"></span></span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;text-align:right">{{ m.w }}</span>
+      </button>
+    </sc-for>
+  </section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isTune }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:28px">
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <h1 style="margin:0;font-family:Newsreader,serif;font-weight:400;font-size:52px;letter-spacing:-.02em">Stemmer</h1>
+    <p style="margin:0;font-size:18px;color:#6b5a4a">Velg en streng for å høre referansetonen, og slå an. Gnist lytter gjennom mikrofonen.</p>
+  </header>
+  <section style="background:#241a13;color:#e9dcc4;border-radius:18px;padding:40px 32px;display:flex;flex-direction:column;align-items:center;gap:26px">
+    <div style="display:flex;align-items:baseline;gap:14px"><span style="font-family:Newsreader,serif;font-size:120px;line-height:.9">{{ tNote }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:15px;color:#c9b89c">{{ tHz }}</span></div>
+    <div style="position:relative;width:340px;height:170px;overflow:hidden">
+      <sc-for list="{{ ticks }}" as="k" hint-placeholder-count="21">
+        <div style="position:absolute;left:50%;bottom:0;width:2px;height:160px;margin-left:-1px;transform-origin:bottom center;transform:{{ k.tf }}"><div style="width:2px;height:{{ k.h }};background:{{ k.c }};border-radius:1px"></div></div>
+      </sc-for>
+      <div style="position:absolute;left:50%;bottom:0;width:4px;height:150px;margin-left:-2px;border-radius:2px;transform-origin:bottom center;transform:{{ needleTf }};background:{{ needleColor }};box-shadow:0 0 16px {{ needleColor }};transition:transform .14s linear"></div>
+      <div style="position:absolute;left:50%;bottom:-10px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#e9dcc4"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:20px;font-weight:600;color:{{ needleColor }}">{{ tStatus }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#c9b89c">{{ tCents }}</span></div>
+    <div style="display:flex;gap:10px">
+      <sc-for list="{{ tStrings }}" as="t" hint-placeholder-count="6">
+        <button onClick="{{ t.onClick }}" style="all:unset;cursor:pointer;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Newsreader,serif;font-size:24px;background:{{ t.bg }};color:{{ t.color }};border:1px solid {{ t.border }}">{{ t.n }}</button>
+      </sc-for>
+    </div>
+  </section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPlay }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:22px">
+  <button onClick="{{ back }}" style="all:unset;cursor:pointer;font-size:14px;color:#6b5a4a;font-weight:500" style-hover="color:#2b2019">← {{ backLabel }}</button>
+  <header style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <h1 style="margin:0;font-family:Newsreader,serif;font-weight:400;font-size:48px;letter-spacing:-.02em;line-height:1">{{ song.t }}</h1>
+      <div style="font-size:16px;color:#6b5a4a">{{ song.a }} · {{ songMeta }}</div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <sc-for list="{{ chordChips }}" as="c" hint-placeholder-count="8">
+        <button onClick="{{ c.onClick }}" style="all:unset;cursor:pointer;min-width:44px;text-align:center;padding:7px 10px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:13px;background:{{ c.bg }};color:{{ c.color }};border:1px solid {{ c.border }}">{{ c.name }}</button>
+      </sc-for>
+    </div>
+  </header>
+
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div style="position:relative;height:300px;border-radius:16px;background:linear-gradient(180deg,#3d271a 0%,#2c1b12 100%);box-shadow:0 24px 48px -24px rgba(36,26,19,.7);overflow:hidden">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 3px,rgba(0,0,0,.06) 3px 4px,rgba(0,0,0,0) 4px 11px)"></div>
+      <div style="position:absolute;top:0;bottom:0;right:0;width:72px;background:rgba(0,0,0,.28);border-left:1px solid rgba(255,255,255,.05)"></div>
+      <div style="position:absolute;top:50%;left:calc(61px + (100% - 133px) * .5);width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#d9cdb5;opacity:.45"></div>
+      <div style="position:absolute;top:50%;left:calc(61px + (100% - 133px) * .9);width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#d9cdb5;opacity:.45"></div>
+      <div style="position:absolute;top:0;bottom:0;left:52px;width:9px;background:#e9dfc8;box-shadow:2px 0 5px rgba(0,0,0,.45)"></div>
+      <div style="position:absolute;top:0;bottom:0;left:calc(61px + (100% - 133px) * .2);width:4px;margin-left:-2px;background:linear-gradient(90deg,#7d6238,#d8bd82,#7d6238)"></div>
+      <div style="position:absolute;top:0;bottom:0;left:calc(61px + (100% - 133px) * .4);width:4px;margin-left:-2px;background:linear-gradient(90deg,#7d6238,#d8bd82,#7d6238)"></div>
+      <div style="position:absolute;top:0;bottom:0;left:calc(61px + (100% - 133px) * .6);width:4px;margin-left:-2px;background:linear-gradient(90deg,#7d6238,#d8bd82,#7d6238)"></div>
+      <div style="position:absolute;top:0;bottom:0;left:calc(61px + (100% - 133px) * .8);width:4px;margin-left:-2px;background:linear-gradient(90deg,#7d6238,#d8bd82,#7d6238)"></div>
+      <div style="position:absolute;top:0;bottom:0;left:calc(100% - 72px);width:4px;margin-left:-2px;background:linear-gradient(90deg,#7d6238,#d8bd82,#7d6238)"></div>
+      <sc-for list="{{ strings }}" as="st" hint-placeholder-count="6">
+        <div style="position:absolute;left:0;right:72px;top:{{ st.top }};height:{{ st.h }};transform:translateY(-50%);background:{{ st.color }};box-shadow:{{ st.shadow }};transition:all .18s ease-out"></div>
+      </sc-for>
+      <sc-for list="{{ strings }}" as="st" hint-placeholder-count="6">
+        <div style="position:absolute;left:26px;top:{{ st.top }};transform:translate(-50%,-50%);width:24px;height:24px;border-radius:50%;display:{{ st.openDisplay }};align-items:center;justify-content:center;border:2px solid {{ st.openBorder }};background:{{ st.openBg }};box-shadow:{{ st.openShadow }};color:{{ st.openText }};font-family:'JetBrains Mono',monospace;font-size:15px;transition:all .18s ease-out">{{ st.openLabel }}</div>
+      </sc-for>
+      <sc-for list="{{ dots }}" as="d" hint-placeholder-count="3">
+        <div style="position:absolute;left:{{ d.left }};top:{{ d.top }};width:38px;height:38px;border-radius:50%;transform:translate(-50%,-50%) scale({{ d.scale }});background:{{ d.bg }};box-shadow:{{ d.shadow }};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#2b2019;transition:all .18s ease-out">{{ d.label }}</div>
+      </sc-for>
+      <sc-for list="{{ strings }}" as="st" hint-placeholder-count="6">
+        <div style="position:absolute;left:calc(100% - 36px);top:{{ st.top }};transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid {{ st.rhBorder }};background:{{ st.rhBg }};box-shadow:{{ st.rhShadow }};color:#2b2019;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:14px;transition:all .18s ease-out">{{ st.rh }}</div>
+      </sc-for>
+    </div>
+    <div style="position:relative;height:18px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#6b5a4a">
+      <sc-for list="{{ fretNums }}" as="f" hint-placeholder-count="5"><span style="position:absolute;left:{{ f.left }};transform:translateX(-50%)">{{ f.n }}</span></sc-for>
+      <span style="position:absolute;right:14px">høyre</span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap">
+    <div style="display:flex;align-items:baseline;gap:12px"><span style="font-family:Newsreader,serif;font-size:44px;line-height:1">{{ chordName }}</span><span style="font-size:15px;color:#6b5a4a">neste: {{ nextChord }}</span></div>
+    <div style="display:flex;gap:6px">
+      <sc-for list="{{ beats }}" as="b" hint-placeholder-count="8">
+        <span style="width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px;background:{{ b.bg }};color:{{ b.color }};transition:background .1s">{{ b.l }}</span>
+      </sc-for>
+    </div>
+    <p style="margin:0;font-size:15px;color:#6b5a4a;max-width:340px;text-wrap:pretty">Hold {{ chordName }}-grepet med venstre hånd. Høyre hånd plukker strengene som lyser.</p>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:16px 20px;background:#f7f0e2;border:1px solid #dccfb6;border-radius:14px">
+    <button onClick="{{ prevBar }}" style="all:unset;cursor:pointer;width:44px;height:44px;border-radius:50%;border:1px solid #cdbfa4;display:flex;align-items:center;justify-content:center;font-size:16px">⏮</button>
+    <button onClick="{{ togglePlay }}" style="all:unset;cursor:pointer;width:60px;height:60px;border-radius:50%;background:#d9822b;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 6px 18px -6px rgba(217,130,43,.8)" style-hover="background:#e8963f">
+      <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}"><span style="width:6px;height:22px;background:#241a13;border-radius:1px"></span><span style="width:6px;height:22px;background:#241a13;border-radius:1px"></span></sc-if>
+      <sc-if value="{{ paused }}" hint-placeholder-val="{{ true }}"><span style="width:0;height:0;border-left:18px solid #241a13;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px"></span></sc-if>
+    </button>
+    <button onClick="{{ nextBar }}" style="all:unset;cursor:pointer;width:44px;height:44px;border-radius:50%;border:1px solid #cdbfa4;display:flex;align-items:center;justify-content:center;font-size:16px">⏭</button>
+    <div style="display:flex;flex-direction:column;gap:4px;min-width:220px;flex:1;max-width:340px">
+      <div style="display:flex;justify-content:space-between;font-size:14px"><span style="font-weight:600">Tempo {{ tempo }} %</span><span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#6b5a4a">{{ bpmNow }} BPM</span></div>
+      <input type="range" min="40" max="120" step="5" value="{{ tempo }}" onChange="{{ setTempo }}" style="width:100%">
+    </div>
+    <button onClick="{{ toggleLoop }}" style="all:unset;cursor:pointer;padding:10px 18px;border-radius:999px;font-weight:600;font-size:15px;background:{{ loopBg }};color:{{ loopColor }};border:1px solid {{ loopBorder }}">{{ loopLabel }}</button>
+    <button onClick="{{ toggleMute }}" style="all:unset;cursor:pointer;padding:10px 18px;border-radius:999px;font-weight:600;font-size:15px;background:{{ muteBg }};color:{{ muteColor }};border:1px solid {{ muteBorder }}">{{ muteLabel }}</button>
+    <span style="font-size:14px;color:#6b5a4a">{{ loopHint }}</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start">
+    <section style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px">
+      <sc-for list="{{ tab }}" as="bar" hint-placeholder-count="8">
+        <div onClick="{{ bar.onClick }}" style="cursor:pointer;padding:10px 8px 12px;border-radius:10px;background:{{ bar.bg }};border:1px solid {{ bar.border }};display:flex;flex-direction:column;gap:2px">
+          <div style="display:flex;justify-content:space-between;gap:6px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#6b5a4a;padding:0 2px 6px"><span>{{ bar.n }}</span><span style="font-weight:600;color:#2b2019;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ bar.chord }}</span></div>
+          <sc-for list="{{ bar.rows }}" as="row" hint-placeholder-count="6">
+            <div style="display:grid;grid-template-columns:repeat(8,minmax(0,1fr));height:18px;background:linear-gradient(transparent 8.5px,#c9b89c 8.5px,#c9b89c 9.5px,transparent 9.5px)">
+              <sc-for list="{{ row }}" as="cell" hint-placeholder-count="8">
+                <span style="display:flex;align-items:center;justify-content:center;background:{{ cell.col }};font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:{{ cell.color }}"><span style="padding:0 2px;background:{{ cell.chip }};border-radius:3px;line-height:14px">{{ cell.txt }}</span></span>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </sc-for>
+    </section>
+    <aside style="display:flex;flex-direction:column;gap:10px">
+      <div style="aspect-ratio:4/3;border-radius:12px;background:repeating-linear-gradient(135deg,#3a2a1f 0 12px,#33251b 12px 24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#c9b89c">
+        <span style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(233,220,196,.4);display:flex;align-items:center;justify-content:center"><span style="width:0;height:0;border-left:14px solid #e9dcc4;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px"></span></span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px">video · {{ camLower }}</span>
+      </div>
+      <div style="display:flex;background:#e3d7c0;border-radius:999px;padding:3px">
+        <sc-for list="{{ cams }}" as="c" hint-placeholder-count="3">
+          <button onClick="{{ c.onClick }}" style="all:unset;cursor:pointer;flex:1;text-align:center;padding:7px 0;border-radius:999px;font-size:13px;font-weight:600;background:{{ c.bg }};color:{{ c.color }}">{{ c.l }}</button>
+        </sc-for>
+      </div>
+      <div style="font-size:13px;color:#6b5a4a">Videoen følger tempoet og loopen din.</div>
+    </aside>
+  </div>
+</div>
+</sc-if>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;fretMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Enkel&quot;,&quot;Detaljert&quot;],&quot;default&quot;:&quot;Enkel&quot;,&quot;tsType&quot;:&quot;'Enkel'|'Detaljert'&quot;,&quot;section&quot;:&quot;Gripebrett&quot;},&quot;showFingerNumbers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Gripebrett&quot;},&quot;showRightHand&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Gripebrett&quot;},&quot;glow&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.3,&quot;max&quot;:1.6,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Gripebrett&quot;}}">
+const CH={
+C:{f:[0,1,0,2,3,-1],g:[0,1,0,2,3,0],b:[4,3]},Cmaj7:{f:[0,0,0,2,3,-1],g:[0,0,0,2,3,0],b:[4,3]},
+Cadd9:{f:[0,3,0,2,3,-1],g:[0,4,0,2,3,0],b:[4,3]},G:{f:[3,0,0,0,2,3],g:[3,0,0,0,1,2],b:[5,3]},
+Am:{f:[0,1,2,2,0,-1],g:[0,1,3,2,0,0],b:[4,3]},Am7:{f:[0,1,0,2,0,-1],g:[0,1,0,2,0,0],b:[4,3]},
+Em:{f:[0,0,0,2,2,0],g:[0,0,0,3,2,0],b:[5,3]},Fmaj7:{f:[0,1,2,3,-1,-1],g:[0,1,2,3,0,0],b:[3,3]},
+D:{f:[2,3,2,0,-1,-1],g:[2,3,1,0,0,0],b:[3,3]},A:{f:[0,2,2,2,0,-1],g:[0,3,2,1,0,0],b:[4,3]},
+Asus2:{f:[0,0,2,2,0,-1],g:[0,0,3,2,0,0],b:[4,3]},Asus4:{f:[0,3,2,2,0,-1],g:[0,4,3,2,0,0],b:[4,3]},
+E:{f:[0,0,1,2,2,0],g:[0,0,1,3,2,0],b:[5,3]},Bm7:{f:[2,0,2,0,2,-1],g:[3,0,2,0,1,0],b:[4,3]},
+Åpen:{f:[0,0,0,0,0,0],g:[0,0,0,0,0,0],b:[5,4]}};
+const PAT={travis:[['b1',1],[2],['b2'],[0],['b1'],[1],['b2'],[2]],arp:[['b1'],[2],[1],[0],[1],[2],['b2'],[2]],
+pinch:[['b1',0],[],['b2',1],[],['b1',0],[],['b2',1],[]],thumb:[['b1'],[],['b2'],[],['b1'],[],['b2'],[]],pima:[['b1'],[2],[1],[0],['b1'],[2],[1],[0]]};
+const FG={0:'a',1:'m',2:'i'};
+const PNAME={travis:'Travis-picking',arp:'Arpeggio',pinch:'Pinch',thumb:'Vekselbass',pima:'p-i-m-a'};
+const LVL=['','Nybegynner','Litt øvd','Utfordrende'];
+const TONE={Folk:'#6b4a2e',Klassisk:'#4f5a3c',Rock:'#7a3b22',Metal:'#2f2a26',Pop:'#85562a',Teknikk:'#5a4636'};
+const SONGS=[
+{id:'dust',t:'Dust in the Wind',a:'Kansas',g:'Folk',lvl:2,bpm:96,p:'travis',ch:['C','Cmaj7','Cadd9','C','Asus2','Asus4','Asus2','Asus4']},
+{id:'canonc',t:'Canon in C',a:'Pachelbel',g:'Klassisk',lvl:1,bpm:66,p:'arp',ch:['C','G','Am','Em','Fmaj7','C','Fmaj7','G']},
+{id:'canond',t:'Canon in D',a:'Pachelbel',g:'Klassisk',lvl:2,bpm:66,p:'arp',ch:['D','A','Bm7','A','G','D','G','A']},
+{id:'nem',t:'Nothing Else Matters',a:'Metallica',g:'Metal',lvl:2,bpm:69,p:'arp',ch:['Em','Em','Em','Em','D','C','Em','Em']},
+{id:'ftb',t:'Fade to Black',a:'Metallica',g:'Metal',lvl:3,bpm:58,p:'arp',ch:['Am','C','G','Em','Am','C','G','Em']},
+{id:'roul',t:'Roulette',a:'System of a Down',g:'Rock',lvl:2,bpm:76,p:'pima',ch:['Am','Fmaj7','C','G','Am','Fmaj7','C','E']},
+{id:'lonely',t:'Lonely Day',a:'System of a Down',g:'Rock',lvl:1,bpm:80,p:'arp',ch:['Em','C','G','D','Em','C','G','D']},
+{id:'bb',t:'Blackbird',a:'The Beatles',g:'Pop',lvl:3,bpm:92,p:'pinch',ch:['G','Am7','G','C','D','C','G','G']},
+{id:'tears',t:'Tears in Heaven',a:'Eric Clapton',g:'Pop',lvl:2,bpm:80,p:'arp',ch:['A','E','Bm7','A','D','A','E','A']},
+{id:'hall',t:'Hallelujah',a:'Leonard Cohen',g:'Folk',lvl:1,bpm:60,p:'arp',ch:['C','Am','C','Am','Fmaj7','G','C','G']},
+{id:'land',t:'Landslide',a:'Fleetwood Mac',g:'Folk',lvl:2,bpm:80,p:'travis',ch:['C','G','Am','G','C','G','Am','G']},
+{id:'boxer',t:'The Boxer',a:'Simon & Garfunkel',g:'Folk',lvl:2,bpm:100,p:'travis',ch:['C','Am','G','C','C','Am','G','C']}];
+const EX=[
+{id:'x1',t:'Tommelen alene',a:'Øvelse',g:'Teknikk',lvl:1,bpm:70,p:'thumb',ch:['Em','Em','Am','Am','C','C','G','G'],desc:'Vekselbass med tommelen. Resten av hånden hviler lett.',st:2},
+{id:'x2',t:'p-i-m-a på tomme strenger',a:'Øvelse',g:'Teknikk',lvl:1,bpm:66,p:'pima',ch:['Åpen','Åpen','Åpen','Åpen','Em','Em','Em','Em'],desc:'Hver finger får sin streng. Ingen grep, bare flyt.',st:2},
+{id:'x3',t:'Pinch',a:'Øvelse',g:'Teknikk',lvl:1,bpm:70,p:'pinch',ch:['C','C','G','G','Am','Am','Em','Em'],desc:'Tommel og finger plukker samtidig — grunnlaget for Blackbird.',st:1},
+{id:'x4',t:'Arpeggio gjennom grep',a:'Øvelse',g:'Teknikk',lvl:2,bpm:66,p:'arp',ch:['C','C','Am','Am','Em','Em','G','G'],desc:'Samme mønster, nye grep. Øv på skiftene uten å stoppe.',st:0},
+{id:'x5',t:'Travis-picking',a:'Øvelse',g:'Teknikk',lvl:2,bpm:72,p:'travis',ch:['C','C','G','G','Am','Am','Fmaj7','G'],desc:'Vekselbass under en melodi. Nøkkelen til Dust in the Wind.',st:0}];
+const ALL=SONGS.concat(EX);
+function buildBar(c,p){const ch=CH[c];return PAT[p].map(step=>step.map(tk=>{const s=tk==='b1'?ch.b[0]:tk==='b2'?ch.b[1]:tk;return{s,fret:ch.f[s],fg:typeof tk==='string'?'p':FG[s]}}).filter(n=>n.fret>=0));}
+const TOPS=[14,28.4,42.8,57.2,71.6,86],TH=[1.2,1.5,1.9,2.4,2.9,3.4];
+const TUNE=[['E','E2','82,41'],['A','A2','110,00'],['D','D3','146,83'],['G','G3','196,00'],['B','B3','246,94'],['e','E4','329,63']];
+const hash=i=>{const x=Math.sin(i*12.9898)*43758.5453;return x-Math.floor(x)};
+
+class Component extends DCLogic{
+  state={view:'home',from:'home',songId:'dust',bar:2,step:0,playing:false,tempo:70,loopOn:false,loopA:0,loopB:1,pick:0,q:'',genre:'Alle',lvl:0,cam:'Høyre hånd',tuneS:0,cents:-24,wished:false};
+  componentDidMount(){this.pickString(0)}
+  componentWillUnmount(){clearInterval(this.t);clearInterval(this.tt)}
+  cur(){return ALL.find(x=>x.id===this.state.songId)}
+  ac(){if(!this.ctx){const C=window.AudioContext||window.webkitAudioContext;this.ctx=new C();this.bufs={};this.out=this.ctx.createGain();this.out.gain.value=.7;const lp=this.ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=3200;this.out.connect(lp);lp.connect(this.ctx.destination)}if(this.ctx.state==='suspended')this.ctx.resume();return this.ctx}
+  buf(m){if(this.bufs[m])return this.bufs[m];const c=this.ctx,sr=c.sampleRate,f=440*Math.pow(2,(m-69)/12),N=Math.max(2,Math.round(sr/f)),L=Math.floor(sr*2.6),b=c.createBuffer(1,L,sr),y=b.getChannelData(0);let p=0;for(let i=0;i<N;i++){p=p*.5+(Math.random()*2-1)*.5;y[i]=p}const d=.4985+Math.min(.0012,m*0.00001);for(let i=N;i<L;i++)y[i]=d*(y[i-N]+y[i-N-1]);return this.bufs[m]=b}
+  pluck(m,v=.7){if(this.state.muted)return;const c=this.ac(),s=c.createBufferSource(),g=c.createGain();s.buffer=this.buf(m);g.gain.value=v;s.connect(g);g.connect(this.out);s.start()}
+  playStep(bar,step){const song=this.cur();buildBar(song.ch[bar],song.p)[step].forEach(n=>this.pluck([64,59,55,50,45,40][n.s]+n.fret,n.fg==='p'?.85:.6))}
+  strum(ci){const ch=CH[this.cur().ch[ci]];[5,4,3,2,1,0].forEach((s,k)=>{if(ch.f[s]>=0)setTimeout(()=>this.pluck([64,59,55,50,45,40][s]+ch.f[s],.5),k*28)})}
+  tick=()=>{const st=this.state;let step=st.step+1,bar=st.bar;const n=this.cur().ch.length;if(step>=8){step=0;bar++;if(st.loopOn){if(bar>st.loopB||bar<st.loopA)bar=st.loopA}else if(bar>=n)bar=0}this.setState({step,bar});this.playStep(bar,step)};
+  run(tempo){clearInterval(this.t);this.t=setInterval(this.tick,60000/(this.cur().bpm*(tempo??this.state.tempo)/100)/2)}
+  stop(){clearInterval(this.t)}
+  open(id,bar=0){this.stop();this.setState(s=>({view:'play',songId:id,bar,step:0,playing:false,loopOn:false,pick:0,from:s.view==='play'?s.from:s.view}))}
+  go(v){this.stop();this.setState({view:v,playing:false})}
+  barClick(i){if(!this.state.playing)this.strum(i);this.setState(s=>{if(!s.loopOn)return{bar:i,step:0};if(s.pick===0)return{loopA:i,loopB:i,pick:1,bar:i,step:0};const a=Math.min(s.loopA,i),b=Math.max(s.loopA,i);return{loopA:a,loopB:b,pick:0,bar:a,step:0}})}
+  pickString(i,snd){if(snd){this.ac();this.pluck([40,45,50,55,59,64][i],.8)}clearInterval(this.tt);this.setState({tuneS:i,cents:(Math.random()>.5?1:-1)*(16+Math.random()*30)});this.tt=setInterval(()=>this.setState(st=>{let c=st.cents*.87+(Math.random()-.5)*1.4;if(Math.abs(c)<.9){clearInterval(this.tt);c=0}return{cents:c}}),150)}
+  card(c){const on='#b8661c',off='#dccfb6';return{t:c.t,a:c.a,tone:TONE[c.g],pattern:PNAME[c.p].toUpperCase(),chords:[...new Set(c.ch)].slice(0,5).join('  '),level:LVL[c.lvl],bpm:c.bpm,l1:on,l2:c.lvl>1?on:off,l3:c.lvl>2?on:off,open:()=>this.open(c.id)}}
+  renderVals(){
+    const s=this.state,P=this.props,gl=P.glow??1,showFN=P.showFingerNumbers??true,showRH=P.showRightHand??true;
+    const song=this.cur(),isEx=song.g==='Teknikk';
+    const navAct=s.view==='play'?(isEx?'tech':s.from==='home'?'home':'lib'):s.view;
+    const nav=[['home','Hjem'],['lib','Bibliotek'],['tech','Teknikk'],['prog','Fremdrift'],['tune','Stemmer']].map(([id,l])=>{const a=navAct===id;return{label:l,onClick:()=>this.go(id),bg:a?'rgba(233,220,196,.09)':'transparent',color:a?'#f3e6cc':'#b7a58b',bar:a?'#e8963f':'transparent'}});
+    const weekDots=['M','T','O','T','F','L','S'].map((d,i)=>({d,bg:i>=2&&i<=5?'#ffb35c':'transparent',border:i===5?'2px solid #f3e6cc':i<2||i===6?'1px solid rgba(233,220,196,.25)':'none',shadow:i>=2&&i<=5?'0 0 8px rgba(255,160,60,.5)':'none'}));
+    // player
+    const bars=song.ch.map(c=>buildBar(c,song.p));
+    const cur=bars[s.bar][s.step],act={};cur.forEach(n=>act[n.s]=n);
+    const chord=CH[song.ch[s.bar]];
+    const strings=TOPS.map((t,i)=>{const n=act[i],f=chord.f[i],openHit=n&&f===0;return{top:t+'%',h:(TH[i]+(n?1:0))+'px',
+      color:n?'#ffd08a':f<0?'rgba(207,196,174,.3)':'#cfc4ae',shadow:n?`0 0 ${10*gl}px ${2*gl}px rgba(255,170,80,${Math.min(1,.85*gl)})`:'0 1px 1px rgba(0,0,0,.5)',
+      openDisplay:f<=0?'flex':'none',openLabel:f<0?'×':'',openBorder:f<0?'transparent':openHit?'#ffd08a':'#e9dcc4',openBg:openHit?'#ffb35c':f<0?'transparent':'#2e1d13',
+      openText:'#a8977d',openShadow:openHit?`0 0 ${22*gl}px ${6*gl}px rgba(255,160,60,${Math.min(1,.6*gl)})`:'none',
+      rh:showRH&&n?n.fg:'',rhBg:showRH&&n?'#ffb35c':'transparent',rhBorder:showRH?(n?'#ffb35c':'rgba(233,220,196,.16)'):'transparent',rhShadow:showRH&&n?`0 0 ${18*gl}px ${4*gl}px rgba(255,160,60,${Math.min(1,.55*gl)})`:'none'}});
+    const dots=[];chord.f.forEach((f,i)=>{if(f>0){const n=act[i];dots.push({left:`calc(61px + (100% - 133px) * ${(f-.5)/5})`,top:TOPS[i]+'%',label:showFN?String(chord.g[i]):'',bg:n?'#ffb35c':'#efe2c8',scale:n?1.18:1,
+      shadow:n?`0 0 0 4px rgba(255,179,92,.25), 0 0 ${30*gl}px ${8*gl}px rgba(255,150,50,${Math.min(1,.7*gl)})`:'0 3px 8px rgba(0,0,0,.45)'})}});
+    if((P.fretMode??'Enkel')==='Enkel'){const A='#e8963f';
+      strings.forEach((o,i)=>{const n=act[i],f=chord.f[i],openHit=n&&f===0;Object.assign(o,{h:(TH[i]+(n?.6:0))+'px',color:n?A:f<0?'rgba(185,173,151,.25)':'rgba(207,196,174,.55)',shadow:n?'0 0 6px rgba(232,150,63,.45)':'none',
+        openBorder:f<0?'transparent':openHit?A:'rgba(233,220,196,.35)',openBg:openHit?A:f<0?'transparent':'#2e1d13',openShadow:'none',
+        rhBorder:'transparent',rhBg:showRH&&n?A:'transparent',rhShadow:'none'})});
+      dots.forEach(d=>{const hit=d.bg==='#ffb35c';d.bg=hit?A:'#efe2c8';d.scale=1;d.shadow='0 2px 6px rgba(0,0,0,.35)'});}
+    const fretNums=[1,2,3,4,5].map(n=>({n,left:`calc(61px + (100% - 133px) * ${(n-.5)/5})`}));
+    const inLoop=i=>s.loopOn&&i>=s.loopA&&i<=s.loopB;
+    const chordChips=song.ch.map((c,i)=>({name:c,onClick:()=>this.barClick(i),bg:i===s.bar?'#2b2019':inLoop(i)?'rgba(217,130,43,.14)':'transparent',color:i===s.bar?'#f3e6cc':'#6b5a4a',border:i===s.bar?'#2b2019':inLoop(i)?'#e3a35c':'#dccfb6'}));
+    const tab=bars.map((b,bi)=>({n:bi+1,chord:song.ch[bi],onClick:()=>this.barClick(bi),bg:inLoop(bi)?'#f6dfbd':'#f7f0e2',border:bi===s.bar?'#d9822b':'#dccfb6',
+      rows:[0,1,2,3,4,5].map(r=>b.map((st,si)=>{const n=st.find(x=>x.s===r),on=bi===s.bar&&si===s.step;return{txt:n?String(n.fret):'',col:on?'rgba(217,130,43,.28)':'transparent',chip:n?(on?'#ffb35c':'#f7f0e2'):'transparent',color:'#2b2019'}}))}));
+    const beats=['1','&','2','&','3','&','4','&'].map((l,i)=>({l,bg:i===s.step?'#2b2019':'#e3d7c0',color:i===s.step?'#ffc27a':'#6b5a4a'}));
+    // library
+    const q=s.q.trim().toLowerCase();
+    const lib=SONGS.filter(c=>(s.genre==='Alle'||c.g===s.genre)&&(!s.lvl||c.lvl===s.lvl)&&(!q||(c.t+' '+c.a+' '+c.g).toLowerCase().includes(q)));
+    const chip=(a)=>({bg:a?'#2b2019':'transparent',color:a?'#f3e6cc':'#2b2019',border:a?'#2b2019':'#cdbfa4'});
+    const genreChips=['Alle','Folk','Klassisk','Rock','Metal','Pop'].map(g=>({label:g,onClick:()=>this.setState({genre:g}),...chip(s.genre===g)}));
+    const lvlChips=[[0,'Alle nivåer'],[1,'Nybegynner'],[2,'Litt øvd'],[3,'Utfordrende']].map(([v,l])=>({label:l,onClick:()=>this.setState({lvl:v}),...chip(s.lvl===v)}));
+    // tuner
+    const c=s.cents,ok=Math.abs(c)<2;
+    const ticks=[];for(let k=-50;k<=50;k+=5)ticks.push({tf:`rotate(${k*1.8}deg)`,h:k%25===0?'18px':'9px',c:k===0?'#9fb07a':'rgba(233,220,196,.45)'});
+    const minutes=[0,0,22,31,26,18,null];
+    return{
+      nav,weekDots,ticks,
+      isHome:s.view==='home',isLib:s.view==='lib',isTech:s.view==='tech',isProg:s.view==='prog',isTune:s.view==='tune',isPlay:s.view==='play',
+      session:[{n:'1',t:'Tommelen alene',sub:'Oppvarming · vekselbass',min:'3 MIN',id:'x1'},{n:'2',t:'Pinch',sub:'Teknikk · tommel og finger samtidig',min:'5 MIN',id:'x3'},{n:'3',t:'Dust in the Wind',sub:'Låt · takt 1–4 i loop',min:'10 MIN',id:'dust'}].map(x=>({...x,open:()=>this.open(x.id)})),
+      startSession:()=>this.open('x1'),resume:()=>this.open('dust',2),
+      recs:['canonc','hall','nem'].map(id=>this.card(SONGS.find(x=>x.id===id))),
+      q:s.q,onQ:e=>this.setState({q:e.target.value,wished:false}),genreChips,lvlChips,libSongs:lib.map(x=>this.card(x)),noHits:lib.length===0,
+      wishText:s.wished?'Lagt til i ønskelisten. Du får beskjed når et forenklet arrangement er klart.':'Vi lager forenklede fingerspill-arrangementer av låtene du ønsker deg.',
+      wish:()=>this.setState({wished:true}),
+      exercises:EX.map((x,i)=>({num:String(i+1).padStart(2,'0'),t:x.t,desc:x.desc,fingers:[...new Set(PAT[x.p].flat().map(tk=>typeof tk==='string'?'p':FG[tk]))],
+        status:['Ikke startet','I gang','Mestret'][x.st],stBg:['#e3d7c0','#f6dfbd','#dfe3cf'][x.st],stColor:['#6b5a4a','#8a4a10','#4a5530'][x.st],open:()=>this.open(x.id)})),
+      stats:[{v:'4',l:'dager på rad'},{v:'1 t 37 min',l:'øvd denne uka'},{v:'3',l:'låter i gang'}],
+      heat:Array.from({length:84},(_,i)=>{const off=83-i;let l=off<4?2+(off%2):off===4?0:(hash(i)>.62-i/300?1+Math.floor(hash(i+7)*3):0);if(off<0)l=0;return{bg:['#e3d7c0','#efc896','#e3a35c','#b8661c'][l]}}),
+      week:['Man','Tir','Ons','Tor','Fre','Lør','Søn'].map((d,i)=>({d,m:minutes[i]==null?'':minutes[i]+'',h:minutes[i]?Math.round(minutes[i]/31*110)+'px':'3px',bg:i===5?'#d9822b':minutes[i]?'#e3a35c':'#e3d7c0'})),
+      mastery:[['canonc',72],['dust',38],['nem',15]].map(([id,p])=>{const x=SONGS.find(y=>y.id===id);return{t:x.t,a:x.a,w:p+'%',open:()=>this.open(id)}}),
+      tNote:TUNE[s.tuneS][0],tHz:TUNE[s.tuneS][1]+' · '+TUNE[s.tuneS][2]+' Hz',needleTf:`rotate(${Math.max(-50,Math.min(50,c))*1.8}deg)`,needleColor:ok?'#9fb07a':'#ffb35c',
+      tStatus:ok?'Stemt':c<0?'Litt lavt — stram strengen':'Litt høyt — slakk strengen',tCents:(c>0?'+':'')+c.toFixed(1)+' cent',
+      tStrings:TUNE.map((t,i)=>({n:t[0],onClick:()=>this.pickString(i,true),bg:i===s.tuneS?'#ffb35c':'transparent',color:i===s.tuneS?'#241a13':'#e9dcc4',border:i===s.tuneS?'#ffb35c':'rgba(233,220,196,.3)'})),
+      song,songMeta:(isEx?'':'Forenklet arrangement · ')+PNAME[song.p]+' · '+song.bpm+' BPM',
+      backLabel:s.from==='tech'?'Teknikk':s.from==='home'?'Hjem':s.from==='prog'?'Fremdrift':'Bibliotek',back:()=>this.go(s.from==='play'?'lib':s.from),
+      chordChips,strings,dots,fretNums,tab,beats,
+      chordName:song.ch[s.bar],nextChord:song.ch[(s.bar+1)%song.ch.length],
+      playing:s.playing,paused:!s.playing,
+      togglePlay:()=>{if(s.playing){this.stop();this.setState({playing:false})}else{this.ac();this.playStep(s.bar,s.step);this.run();this.setState({playing:true})}},
+      toggleMute:()=>this.setState({muted:!s.muted}),muteLabel:s.muted?'Lyd av':'Lyd på',muteBg:s.muted?'transparent':'#2b2019',muteColor:s.muted?'#6b5a4a':'#ffc27a',muteBorder:s.muted?'#cdbfa4':'#2b2019',
+      prevBar:()=>this.setState({bar:Math.max(0,s.bar-1),step:0}),nextBar:()=>this.setState({bar:(s.bar+1)%song.ch.length,step:0}),
+      tempo:s.tempo,bpmNow:Math.round(song.bpm*s.tempo/100),setTempo:e=>{const v=+e.target.value;this.setState({tempo:v});if(s.playing)this.run(v)},
+      toggleLoop:()=>this.setState({loopOn:!s.loopOn,loopA:s.bar,loopB:Math.min(s.bar+1,song.ch.length-1),pick:0}),
+      loopLabel:s.loopOn?`Loop takt ${s.loopA+1}–${s.loopB+1}`:'Loop',loopBg:s.loopOn?'#2b2019':'transparent',loopColor:s.loopOn?'#ffc27a':'#2b2019',loopBorder:s.loopOn?'#2b2019':'#cdbfa4',
+      loopHint:s.loopOn?(s.pick?'Klikk sluttakten':'Klikk to takter for å velge ny loop'):'',
+      cams:['Høyre hånd','Venstre hånd','Begge'].map(l=>({l,onClick:()=>this.setState({cam:l}),bg:s.cam===l?'#f7f0e2':'transparent',color:s.cam===l?'#2b2019':'#6b5a4a'})),
+      camLower:s.cam.toLowerCase()
+    };
+  }
+}
+</script>
+</body>
+</html>
